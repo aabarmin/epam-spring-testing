@@ -10,22 +10,15 @@ import org.springframework.web.client.RestTemplate;
 
 @Component
 public class PostImporter {
-  @Value("${importer.source.host:localhost}")
-  private String importerHost;
-
-  @Value("${importer.source.port:8080}")
-  private int importerPort;
+  @Value("${importer.source.url:http://other-host/importer}")
+  private String importerAddress;
 
   @Autowired
   private RestTemplate restTemplate;
 
   public Collection<Post> importPosts(LocalDate startDate, LocalDate endDate) {
     final ImportResponse response = restTemplate
-        .postForObject(getImporterUrl(), new ImportRequest(startDate, endDate), ImportResponse.class);
+        .postForObject(importerAddress, new ImportRequest(startDate, endDate), ImportResponse.class);
     return response.getPosts();
-  }
-
-  private String getImporterUrl() {
-    return "http://" + importerHost + ":" + importerPort + "/importer";
   }
 }

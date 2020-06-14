@@ -6,14 +6,15 @@ import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
 
 import com.epam.training.microservices.comment.CommentValidator;
-import org.junit.Test;
-import org.junit.runner.RunWith;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
+import org.mockito.Answers;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.test.context.ContextConfiguration;
-import org.springframework.test.context.junit4.SpringRunner;
+import org.springframework.test.context.junit.jupiter.SpringExtension;
 
-@RunWith(SpringRunner.class)
+@ExtendWith(SpringExtension.class)
 @ContextConfiguration(classes = {
         PostService.class,
         CommentValidator.class,
@@ -23,7 +24,7 @@ public class PostServiceSpringTest {
   @Autowired
   private PostService unitUnderTest;
 
-  @MockBean
+  @MockBean(answer = Answers.RETURNS_DEFAULTS)
   private PostRepository postRepository;
 
   @Test

@@ -1,0 +1,1 @@
+insert into POSTS (POST_ID, POST_TITLE, POST_CONTENT) VALUES (99, 'Special post', 'Special content');

@@ -26,9 +26,6 @@ dependencies {
     implementation 'commons-lang:commons-lang:2.6'
 
     testImplementation 'net.sourceforge.htmlunit:htmlunit'
-    testImplementation 'com.github.tomakehurst:wiremock-jre8:2.26.3'
-    testImplementation 'io.rest-assured:rest-assured'
-    testImplementation 'io.rest-assured:spring-mock-mvc'
     testImplementation 'org.testcontainers:testcontainers:1.14.3'
     testImplementation 'org.testcontainers:junit-jupiter:1.14.3'
     testImplementation 'org.testcontainers:mysql:1.14.3'

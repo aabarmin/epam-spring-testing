@@ -25,7 +25,7 @@ public class PostController {
     return postService.findOne(id);
   }
 
-  @PostMapping("/")
+  @PostMapping("")
   public Post save(@RequestBody Post post) {
     return postService.save(post);
   }
