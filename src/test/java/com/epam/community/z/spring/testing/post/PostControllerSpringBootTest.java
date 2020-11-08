@@ -19,6 +19,7 @@ class PostControllerSpringBootTest {
   private TestRestTemplate restTemplate;
 
   @BeforeEach
+  @SuppressWarnings("unchecked")
   void save_shouldCreatePost() {
     final Post post = new Post();
     post.setContent("<p>Post content</p>");

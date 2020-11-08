@@ -1,13 +1,7 @@
 package com.epam.community.z.spring.testing.post;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.ManyToOne;
-import javax.persistence.Table;
-import lombok.Data;
+import javax.persistence.*;
 
-@Data
 @Entity
 @Table(name = "COMMENTS")
 public class Comment {
@@ -23,4 +17,36 @@ public class Comment {
 
   @ManyToOne
   private Post post;
+
+  public int getId() {
+    return id;
+  }
+
+  public void setId(int id) {
+    this.id = id;
+  }
+
+  public String getAuthor() {
+    return author;
+  }
+
+  public void setAuthor(String author) {
+    this.author = author;
+  }
+
+  public String getText() {
+    return text;
+  }
+
+  public void setText(String text) {
+    this.text = text;
+  }
+
+  public Post getPost() {
+    return post;
+  }
+
+  public void setPost(Post post) {
+    this.post = post;
+  }
 }
