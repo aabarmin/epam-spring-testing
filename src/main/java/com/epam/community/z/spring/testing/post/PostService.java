@@ -2,16 +2,19 @@ package com.epam.community.z.spring.testing.post;
 
 import com.epam.community.z.spring.testing.comment.CommentValidator;
 import com.epam.community.z.spring.testing.comment.InvalidCommentException;
-import java.util.List;
-import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
-@RequiredArgsConstructor
 public class PostService {
-  private final PostRepository postRepository;
-  private final CommentValidator commentValidator;
-  private final PostSanitizer postSanitizer;
+  @Autowired
+  private PostRepository postRepository;
+  @Autowired
+  private CommentValidator commentValidator;
+  @Autowired
+  private PostSanitizer postSanitizer;
 
   public List<Post> findAll() {
     return postRepository.findAll();
