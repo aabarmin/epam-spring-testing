@@ -11,6 +11,11 @@ public class PostController {
   @Autowired
   private PostService postService;
 
+  @PostMapping("")
+  public Post save(@RequestBody Post post) {
+    return postService.save(post);
+  }
+
   @GetMapping("")
   public List<Post> findAll() {
     return postService.findAll();
@@ -19,10 +24,5 @@ public class PostController {
   @GetMapping("/{id}")
   public Post findOne(@PathVariable("id") int id) {
     return postService.findOne(id);
-  }
-
-  @PostMapping("")
-  public Post save(@RequestBody Post post) {
-    return postService.save(post);
   }
 }

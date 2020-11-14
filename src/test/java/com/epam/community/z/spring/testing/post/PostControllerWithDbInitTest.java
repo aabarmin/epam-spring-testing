@@ -26,7 +26,7 @@ import org.springframework.test.jdbc.JdbcTestUtils;
 )
 @Sql(
     scripts = "/empty_posts.sql",
-    executionPhase = ExecutionPhase.BEFORE_TEST_METHOD
+    executionPhase = ExecutionPhase.AFTER_TEST_METHOD
 )
 @SpringBootTest(webEnvironment = WebEnvironment.RANDOM_PORT)
 class PostControllerWithDbInitTest {
