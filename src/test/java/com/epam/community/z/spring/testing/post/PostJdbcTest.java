@@ -1,42 +1,47 @@
 package com.epam.community.z.spring.testing.post;
 
-import static org.junit.jupiter.api.Assertions.*;
-
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.util.List;
-import java.util.Map;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.jdbc.JdbcTest;
 import org.springframework.jdbc.core.JdbcTemplate;
-import org.springframework.jdbc.core.RowMapper;
+import org.springframework.test.context.jdbc.Sql;
+import org.springframework.test.context.jdbc.SqlConfig;
 
+import java.util.List;
+
+import static org.junit.jupiter.api.Assertions.*;
+
+@Sql(
+    scripts = "/empty_posts.sql",
+    executionPhase = Sql.ExecutionPhase.BEFORE_TEST_METHOD
+)
+@Sql(
+    scripts = "/create_posts.sql",
+    config = @SqlConfig(separator = ";")
+)
 @JdbcTest
 class PostJdbcTest {
   @Autowired
   private JdbcTemplate jdbcTemplate;
 
   @Test
-  void check_contextStarts() {
-    assertNotNull(jdbcTemplate);
+  void select_tables() {
+    final List<Post> posts = jdbcTemplate.query("SELECT * FROM POSTS", (rs, rowNum) -> {
+      final Post post = new Post();
+      post.setId(rs.getInt("POST_ID"));
+      post.setTitle(rs.getString("POST_TITLE"));
+      post.setContent(rs.getString("POST_CONTENT"));
+      return post;
+    });
+
+    assertAll(
+        () -> assertNotNull(posts),
+        () -> assertEquals(4, posts.size())
+    );
   }
 
   @Test
-  void select_tables() {
-    jdbcTemplate.execute("CREATE TABLE TEST");
-
-    final List<Map<String, String>> tables = jdbcTemplate
-        .query("SHOW TABLES", new RowMapper<Map<String, String>>() {
-          @Override
-          public Map<String, String> mapRow(ResultSet rs, int rowNum) throws SQLException {
-            return Map.of("title", rs.getString(1));
-          }
-        });
-
-    assertAll(
-        () -> assertNotNull(tables),
-        () -> assertFalse(tables.isEmpty())
-    );
+  void check_contextStarts() {
+    assertNotNull(jdbcTemplate);
   }
 }
