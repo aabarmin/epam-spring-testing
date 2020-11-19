@@ -16,6 +16,7 @@ public class Comment {
   private String text;
 
   @ManyToOne
+  @JoinColumn(name = "POST_ID")
   private Post post;
 
   public int getId() {
