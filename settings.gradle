@@ -1,3 +1,5 @@
 rootProject.name = 'spring-testing'
 
 include 'blog'
+include 'external-sync-service'
+

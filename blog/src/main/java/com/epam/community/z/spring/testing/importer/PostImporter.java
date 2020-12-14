@@ -10,7 +10,7 @@ import org.springframework.web.client.RestTemplate;
 
 @Component
 public class PostImporter {
-  @Value("${importer.source.url:http://other-host/importer}")
+  @Value("${importer.source.url:http://localhost:8180/posts/export}")
   private String importerAddress;
 
   @Autowired

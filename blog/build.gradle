@@ -5,7 +5,7 @@ plugins {
 }
 
 group = 'com.epam.community.z'
-version = '0.0.1-SNAPSHOT'
+version = parent.version
 sourceCompatibility = '11'
 
 configurations {
