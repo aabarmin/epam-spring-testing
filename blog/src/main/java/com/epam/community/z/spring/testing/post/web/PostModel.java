@@ -1,22 +1,13 @@
-package com.epam.community.z.spring.test.service.sync.model;
+package com.epam.community.z.spring.testing.post.web;
 
-import java.time.LocalDate;
 import java.util.HashSet;
 import java.util.Set;
 
-public class Post {
+public class PostModel {
   private int id;
   private String title;
   private String content;
-  private LocalDate created;
-
-  public LocalDate getCreated() {
-    return created;
-  }
-
-  public void setCreated(LocalDate created) {
-    this.created = created;
-  }
+  private Set<CommentModel> comments = new HashSet<>();
 
   public int getId() {
     return id;
@@ -40,5 +31,13 @@ public class Post {
 
   public void setContent(String content) {
     this.content = content;
+  }
+
+  public Set<CommentModel> getComments() {
+    return comments;
+  }
+
+  public void setComments(Set<CommentModel> comments) {
+    this.comments = comments;
   }
 }

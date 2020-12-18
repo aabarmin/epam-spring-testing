@@ -1,4 +1,4 @@
-package com.epam.community.z.spring.test.service.sync.model;
+package com.epam.community.z.spring.testing;
 
 public class Comment {
   private int id;

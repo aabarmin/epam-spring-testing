@@ -20,7 +20,7 @@ public class Post {
   @Column(name = "POST_CONTENT")
   private String content;
 
-  @OneToMany(mappedBy = "post")
+  @OneToMany(mappedBy = "post", fetch = FetchType.EAGER, cascade = CascadeType.PERSIST)
   private Set<Comment> comments;
 
   public int getId() {

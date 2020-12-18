@@ -1,5 +1,6 @@
 package com.epam.community.z.spring.testing.post;
 
+import com.epam.community.z.spring.testing.comment.CommentRepository;
 import com.epam.community.z.spring.testing.comment.CommentValidator;
 import com.epam.community.z.spring.testing.comment.InvalidCommentException;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,6 +12,8 @@ import java.util.List;
 public class PostService {
   @Autowired
   private PostRepository postRepository;
+  @Autowired
+  private CommentRepository commentRepository;
   @Autowired
   private CommentValidator commentValidator;
   @Autowired
@@ -30,6 +33,7 @@ public class PostService {
       throw new InvalidCommentException();
     }
     post.getComments().add(comment);
+    commentRepository.save(comment);
     postRepository.save(post);
     return post;
   }
