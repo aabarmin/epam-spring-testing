@@ -1,6 +1,0 @@
-rootProject.name = 'spring-testing'
-
-include 'blog'
-include 'external-post-generator'
-include 'external-comment-generator'
-
