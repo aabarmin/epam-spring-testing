@@ -1,5 +1,6 @@
 package com.epam.community.z.spring.testing.post.stat;
 
+import com.epam.community.z.spring.testing.comment.CommentRepository;
 import com.epam.community.z.spring.testing.comment.CommentValidator;
 import com.epam.community.z.spring.testing.post.Post;
 import com.epam.community.z.spring.testing.post.PostRepository;
@@ -36,6 +37,9 @@ class StatisticsCollectorAspectTest {
 
     @MockBean
     private PostRepository postRepository;
+
+    @MockBean
+    private CommentRepository commentRepository;
 
     @BeforeEach
     void setUp() {

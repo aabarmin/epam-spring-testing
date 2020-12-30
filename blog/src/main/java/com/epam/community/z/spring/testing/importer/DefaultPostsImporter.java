@@ -4,6 +4,7 @@ import com.epam.community.z.spring.testing.post.Post;
 import com.epam.community.z.spring.testing.post.PostService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationListener;
+import org.springframework.context.annotation.Profile;
 import org.springframework.context.event.ContextRefreshedEvent;
 import org.springframework.stereotype.Component;
 
@@ -11,6 +12,7 @@ import java.time.LocalDate;
 import java.util.Collection;
 
 @Component
+@Profile("running")
 public class DefaultPostsImporter implements ApplicationListener<ContextRefreshedEvent> {
   @Autowired
   private PostImporter postImporter;

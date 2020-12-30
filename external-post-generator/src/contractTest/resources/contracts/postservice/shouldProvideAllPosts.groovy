@@ -1,4 +1,4 @@
-package contracts
+package contracts.postservice
 
 org.springframework.cloud.contract.spec.Contract.make {
     request {

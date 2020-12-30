@@ -8,6 +8,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
+import com.epam.community.z.spring.testing.comment.CommentRepository;
 import com.epam.community.z.spring.testing.comment.CommentValidator;
 import java.util.Collections;
 import org.junit.jupiter.api.BeforeEach;
@@ -33,6 +34,9 @@ import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 public class PostControllerSpringWebTest {
   @MockBean
   private PostRepository postRepository;
+
+  @MockBean
+  private CommentRepository commentRepository;
 
   @Autowired
   private WebApplicationContext webContext;
