@@ -50,7 +50,7 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
-                <version>3.8.1</version>
+                <version>${maven.plugin.compiler.version}</version>
                 <configuration>
                     <release>${java.version}</release>
                 </configuration>
@@ -58,6 +58,12 @@
             <plugin>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
+                <version>${maven.plugin.spring.boot.version}</version>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-surefire-plugin</artifactId>
+                <version>${maven.plugin.surefire.version}</version>
             </plugin>
             <plugin>
                 <groupId>org.springframework.cloud</groupId>
@@ -65,7 +71,7 @@
                 <version>3.0.0</version>
                 <extensions>true</extensions>
                 <configuration>
-                    <contractsDirectory>${project.basedir}/src/contract/resources/contracts</contractsDirectory>
+                    <contractsDirectory>${project.basedir}/src/test/java/contracts</contractsDirectory>
                     <testFramework>JUNIT5</testFramework>
                     <baseClassForTests>com.epam.community.z.spring.test.service.sync.ContractBaseTestClass</baseClassForTests>
                 </configuration>

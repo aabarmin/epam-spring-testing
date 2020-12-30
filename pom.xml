@@ -13,6 +13,9 @@
         <java.version>11</java.version>
         <spring.boot.version>2.4.1</spring.boot.version>
         <spring.cloud.version>2020.0.0</spring.cloud.version>
+        <maven.plugin.spring.boot.version>2.4.1</maven.plugin.spring.boot.version>
+        <maven.plugin.surefire.version>2.22.2</maven.plugin.surefire.version>
+        <maven.plugin.compiler.version>3.8.1</maven.plugin.compiler.version>
         <mapstruct.version>1.4.1.Final</mapstruct.version>
     </properties>
 

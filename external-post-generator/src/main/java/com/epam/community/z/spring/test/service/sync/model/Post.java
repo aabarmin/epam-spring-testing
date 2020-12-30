@@ -1,5 +1,8 @@
 package com.epam.community.z.spring.test.service.sync.model;
 
+import com.epam.community.z.spring.test.service.sync.converter.LocalDateConverter;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+
 import java.time.LocalDate;
 import java.util.HashSet;
 import java.util.Set;
@@ -8,6 +11,7 @@ public class Post {
   private int id;
   private String title;
   private String content;
+  @JsonSerialize(converter = LocalDateConverter.class)
   private LocalDate created;
 
   public LocalDate getCreated() {
