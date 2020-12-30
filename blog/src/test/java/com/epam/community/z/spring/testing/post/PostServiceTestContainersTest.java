@@ -2,11 +2,13 @@ package com.epam.community.z.spring.testing.post;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
+import com.epam.community.z.spring.testing.comment.CommentRepository;
 import com.epam.community.z.spring.testing.comment.CommentValidator;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
+import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.test.context.DynamicPropertyRegistry;
 import org.springframework.test.context.DynamicPropertySource;
 import org.springframework.test.context.junit.jupiter.SpringJUnitConfig;
@@ -35,6 +37,9 @@ public class PostServiceTestContainersTest {
 
   @Autowired
   private PostService postService;
+
+  @MockBean
+  private CommentRepository commentRepository;
 
   @Test
   public void check_contextStarts() {

@@ -1,6 +1,7 @@
 package com.epam.community.z.spring.testing.post;
 
 import javax.persistence.*;
+import javax.validation.constraints.Size;
 import java.util.Set;
 
 @Entity
@@ -11,13 +12,15 @@ public class Post {
   @GeneratedValue(strategy = GenerationType.AUTO)
   private int id;
 
+  @Size(min = 3, max = 1024)
   @Column(name = "POST_TITLE")
   private String title;
 
+  @Size(min = 3, max = 4096)
   @Column(name = "POST_CONTENT")
   private String content;
 
-  @OneToMany(mappedBy = "post")
+  @OneToMany(mappedBy = "post", fetch = FetchType.EAGER, cascade = CascadeType.PERSIST)
   private Set<Comment> comments;
 
   public int getId() {

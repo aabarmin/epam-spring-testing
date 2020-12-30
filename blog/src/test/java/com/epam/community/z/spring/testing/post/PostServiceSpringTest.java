@@ -5,6 +5,7 @@ import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
 
+import com.epam.community.z.spring.testing.comment.CommentRepository;
 import com.epam.community.z.spring.testing.comment.CommentValidator;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -26,6 +27,9 @@ public class PostServiceSpringTest {
 
   @MockBean(answer = Answers.RETURNS_DEFAULTS)
   private PostRepository postRepository;
+
+  @MockBean
+  private CommentRepository commentRepository;
 
   @Test
   public void check_contextStarts() {
