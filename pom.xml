@@ -16,6 +16,7 @@
         <maven.plugin.spring.boot.version>2.4.1</maven.plugin.spring.boot.version>
         <maven.plugin.surefire.version>2.22.2</maven.plugin.surefire.version>
         <maven.plugin.compiler.version>3.8.1</maven.plugin.compiler.version>
+        <maven.plugin.jar.version>3.2.0</maven.plugin.jar.version>
         <mapstruct.version>1.4.1.Final</mapstruct.version>
     </properties>
 
@@ -23,6 +24,7 @@
         <module>blog</module>
         <module>external-post-generator</module>
         <module>external-comment-generator</module>
+        <module>external-post-generator-contract</module>
     </modules>
 
     <dependencyManagement>

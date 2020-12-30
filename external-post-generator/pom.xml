@@ -73,7 +73,14 @@
                 <configuration>
                     <contractsDirectory>${project.basedir}/src/test/java/contracts</contractsDirectory>
                     <testFramework>JUNIT5</testFramework>
+                    <contractsMode>LOCAL</contractsMode>
+                    <contractsPath>/post</contractsPath>
                     <baseClassForTests>com.epam.community.z.spring.test.service.sync.ContractBaseTestClass</baseClassForTests>
+                    <contractDependency>
+                        <groupId>com.epam.community.z</groupId>
+                        <artifactId>external-post-generator-contract</artifactId>
+                        <version>${project.version}</version>
+                    </contractDependency>
                 </configuration>
             </plugin>
         </plugins>
