@@ -79,7 +79,5 @@ jobs:
       with:
         name: contract-comment-generator
 
-    - name: Restore Comment contracts
-
     - name: Build with Maven
       run: ./mvnw clean verify
