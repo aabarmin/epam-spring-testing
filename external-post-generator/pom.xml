@@ -38,6 +38,12 @@
             <artifactId>spring-cloud-starter-contract-verifier</artifactId>
             <scope>test</scope>
         </dependency>
+        <dependency>
+            <groupId>com.epam.community.z</groupId>
+            <artifactId>external-post-generator-contract</artifactId>
+            <version>${project.version}</version>
+            <scope>compile</scope>
+        </dependency>
 
         <dependency>
             <groupId>com.google.code.gson</groupId>
