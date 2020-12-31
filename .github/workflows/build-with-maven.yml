@@ -22,5 +22,8 @@ jobs:
     - name: Grant execute permission for Maven Wrapper
       run: chmod +x mvnw
 
+    - name: Install contracts for Post generator
+      run: ./mvnw clean package install --projects external-post-generator-contract
+
     - name: Build with Maven
       run: ./mvnw clean verify
