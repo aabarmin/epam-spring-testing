@@ -4,7 +4,7 @@
 
     <groupId>com.epam.community.z</groupId>
     <artifactId>spring-testing</artifactId>
-    <version>0.0.2-SNAPSHOT</version>
+    <version>0.0.2</version>
 
     <packaging>pom</packaging>
 
@@ -57,7 +57,7 @@
 
     <scm>
         <developerConnection>scm:git:https://github.com/aabarmin/epam-spring-testing</developerConnection>
-        <tag>HEAD</tag>
+        <tag>spring-testing-0.0.2</tag>
     </scm>
 
     <distributionManagement>
