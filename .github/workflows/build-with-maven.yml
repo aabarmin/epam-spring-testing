@@ -35,17 +35,11 @@ jobs:
       - name: Install contracts for Comment generator
         run: ./mvnw clean package install --projects external-comment-generator-contract
 
-      - name: Upload Post generator contract
-        uses: actions/upload-artifact@v1
+      - name: Upload contracts
+        uses: actions/upload-artifact@v2
         with:
-          name: contract-post-generator
-          path: ~/.m2/repository/com/epam/community/z/external-post-generator-contract
-
-      - name: Upload Comment generator contract
-        uses: actions/upload-artifact@v1
-        with:
-          name: contract-comment-generator
-          path: ~/.m2/repository/com/epam/community/z/external-comment-generator-contract
+          name: contracts
+          path: .m2/repository/com/epam/community/z/*-contract/**/*
 
       - name: Remove installed contracts in order not to cache them
         run: rm -rf ~/.m2/repository/com/epam
