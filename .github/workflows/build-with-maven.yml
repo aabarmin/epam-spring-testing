@@ -7,8 +7,50 @@ on:
     branches: [ master ]
 
 jobs:
-  build:
+  build-contracts:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout the code
+        uses: actions/checkout@v2
 
+      - name: Set up JDK 11
+        uses: actions/setup-java@v1
+        with:
+          java-version: 11
+
+      - name: Grant execute permission for Maven Wrapper
+        run: chmod +x mvnw
+
+      - name: Cache local Maven repository
+        uses: actions/cache@v2
+        with:
+          path: ~/.m2/repository
+          key: ${{ runner.os }}-maven-${{ hashFiles('**/pom.xml') }}
+          restore-keys: |
+            ${{ runner.os }}-maven-
+
+      - name: Install contracts for Post generator
+        run: ./mvnw clean package install --projects external-post-generator-contract
+
+      - name: Install contracts for Comment generator
+        run: ./mvnw clean package install --projects external-comment-generator-contract
+
+      - name: Upload Post generator contract
+        uses: actions/upload-artifact@v1
+        with:
+          name: contract-post-generator
+          path: ~/.m2/repository/com/epam/community/z/external-post-generator-contract
+
+      - name: Upload Comment generator contract
+        uses: actions/upload-artifact@v1
+        with:
+          name: contract-comment-generator
+          path: ~/.m2/repository/com/epam/community/z/external-comment-generator-contract
+
+      - name: Remove installed contracts in order not to cache them
+        run: rm -rf ~/.m2/repository/com/epam
+
+  build:
     runs-on: ubuntu-latest
 
     steps:
@@ -19,9 +61,6 @@ jobs:
       with:
         java-version: 11
 
-    - name: Grant execute permission for Maven Wrapper
-      run: chmod +x mvnw
-
     - name: Cache local Maven repository
       uses: actions/cache@v2
       with:
@@ -30,14 +69,17 @@ jobs:
         restore-keys: |
           ${{ runner.os }}-maven-
 
-    - name: Install contracts for Post generator
-      run: ./mvnw clean package install --projects external-post-generator-contract
+    - name: Restore Post contracts
+      uses: actions/download-artifact@v1
+      with:
+        name: contract-post-generator
 
-    - name: Install contracts for Comment generator
-      run: ./mvnw clean package install --projects external-comment-generator-contract
+    - name: Restore Comment contracts
+      uses: actions/download-artifact@v1
+      with:
+        name: contract-comment-generator
+
+    - name: Restore Comment contracts
 
     - name: Build with Maven
       run: ./mvnw clean verify
-
-    - name: Remove installed contracts
-      run: rm -rf ~/.m2/repository/com/epam
