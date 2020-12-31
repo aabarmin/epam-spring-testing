@@ -33,6 +33,9 @@ jobs:
     - name: Install contracts for Post generator
       run: ./mvnw clean package install --projects external-post-generator-contract
 
+    - name: Install contracts for Comment generator
+      run: ./mvnw clean package install --projects external-comment-generator-contract
+
     - name: Build with Maven
       run: ./mvnw clean verify
 
