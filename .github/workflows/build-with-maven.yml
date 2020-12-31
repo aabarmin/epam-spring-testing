@@ -49,20 +49,20 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-#    - uses: actions/checkout@v2
+    - uses: actions/checkout@v2
 
-#    - name: Set up JDK 11
-#      uses: actions/setup-java@v1
-#      with:
-#        java-version: 11
+    - name: Set up JDK 11
+      uses: actions/setup-java@v1
+      with:
+        java-version: 11
 
-#    - name: Cache local Maven repository
-#      uses: actions/cache@v2
-#      with:
-#        path: ~/.m2/repository
-#        key: ${{ runner.os }}-maven-${{ hashFiles('**/pom.xml') }}
-#        restore-keys: |
-#          ${{ runner.os }}-maven-
+    - name: Cache local Maven repository
+      uses: actions/cache@v2
+      with:
+        path: ~/.m2/repository
+        key: ${{ runner.os }}-maven-${{ hashFiles('**/pom.xml') }}
+        restore-keys: |
+          ${{ runner.os }}-maven-
 
     - name: Restore contracts
       uses: actions/download-artifact@v2
@@ -73,5 +73,5 @@ jobs:
     - name: Debug
       run: ls -aR /home/runner
 
-#    - name: Build with Maven
-#      run: ./mvnw clean verify
+    - name: Build with Maven
+      run: ./mvnw clean verify
