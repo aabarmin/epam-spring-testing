@@ -71,24 +71,37 @@
                 <artifactId>maven-surefire-plugin</artifactId>
                 <version>${maven.plugin.surefire.version}</version>
             </plugin>
-            <plugin>
-                <groupId>org.springframework.cloud</groupId>
-                <artifactId>spring-cloud-contract-maven-plugin</artifactId>
-                <version>3.0.0</version>
-                <extensions>true</extensions>
-                <configuration>
-                    <contractsDirectory>${project.basedir}/src/test/java/contracts</contractsDirectory>
-                    <testFramework>JUNIT5</testFramework>
-                    <contractsMode>LOCAL</contractsMode>
-                    <contractsPath>/post</contractsPath>
-                    <baseClassForTests>com.epam.community.z.spring.test.service.sync.ContractBaseTestClass</baseClassForTests>
-                    <contractDependency>
-                        <groupId>com.epam.community.z</groupId>
-                        <artifactId>external-post-generator-contract</artifactId>
-                        <version>${project.version}</version>
-                    </contractDependency>
-                </configuration>
-            </plugin>
         </plugins>
     </build>
+
+    <profiles>
+        <profile>
+            <id>contract-tests</id>
+            <activation>
+                <activeByDefault>true</activeByDefault>
+            </activation>
+            <build>
+                <plugins>
+                    <plugin>
+                        <groupId>org.springframework.cloud</groupId>
+                        <artifactId>spring-cloud-contract-maven-plugin</artifactId>
+                        <version>3.0.0</version>
+                        <extensions>true</extensions>
+                        <configuration>
+                            <contractsDirectory>${project.basedir}/src/test/java/contracts</contractsDirectory>
+                            <testFramework>JUNIT5</testFramework>
+                            <contractsMode>LOCAL</contractsMode>
+                            <contractsPath>/post</contractsPath>
+                            <baseClassForTests>com.epam.community.z.spring.test.service.sync.ContractBaseTestClass</baseClassForTests>
+                            <contractDependency>
+                                <groupId>com.epam.community.z</groupId>
+                                <artifactId>external-post-generator-contract</artifactId>
+                                <version>${project.version}</version>
+                            </contractDependency>
+                        </configuration>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+    </profiles>
 </project>
