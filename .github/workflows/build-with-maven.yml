@@ -51,6 +51,7 @@ jobs:
         run: rm -rf ~/.m2/repository/com/epam
 
   build:
+    needs: build-contracts
     runs-on: ubuntu-latest
 
     steps:
