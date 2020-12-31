@@ -39,7 +39,7 @@ jobs:
         uses: actions/upload-artifact@v2
         with:
           name: contracts
-          path: .m2/repository/com/epam/community/z/*-contract/**/*
+          path: /home/runner/.m2/repository/com/epam/community/z/*-contract/**/*
 
       - name: Remove installed contracts in order not to cache them
         run: rm -rf ~/.m2/repository/com/epam
@@ -64,15 +64,10 @@ jobs:
         restore-keys: |
           ${{ runner.os }}-maven-
 
-    - name: Restore Post contracts
+    - name: Restore contracts
       uses: actions/download-artifact@v1
       with:
-        name: contract-post-generator
-
-    - name: Restore Comment contracts
-      uses: actions/download-artifact@v1
-      with:
-        name: contract-comment-generator
+        name: contracts
 
     - name: Build with Maven
       run: ./mvnw clean verify
