@@ -5,42 +5,43 @@ on:
     branches: [ master ]
 
 jobs:
-  name: Build contracts
-  runs-on: ubuntu-latest
-  steps:
-    - name: Checkout the code
-      uses: actions/checkout@v2
+  build-contracts:
+    name: Build contracts
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout the code
+        uses: actions/checkout@v2
 
-    - name: Set up JDK 11
-      uses: actions/setup-java@v1
-      with:
-        java-version: 11
+      - name: Set up JDK 11
+        uses: actions/setup-java@v1
+        with:
+          java-version: 11
 
-    - name: Grant execute permission for Maven Wrapper
-      run: chmod +x mvnw
+      - name: Grant execute permission for Maven Wrapper
+        run: chmod +x mvnw
 
-    - name: Cache local Maven repository
-      uses: actions/cache@v2
-      with:
-        path: ~/.m2/repository
-        key: ${{ runner.os }}-maven-${{ hashFiles('**/pom.xml') }}
-        restore-keys: |
-          ${{ runner.os }}-maven-
+      - name: Cache local Maven repository
+        uses: actions/cache@v2
+        with:
+          path: ~/.m2/repository
+          key: ${{ runner.os }}-maven-${{ hashFiles('**/pom.xml') }}
+          restore-keys: |
+            ${{ runner.os }}-maven-
 
-    - name: Install contracts for Post generator
-      run: ./mvnw clean package install --projects external-post-generator-contract
+      - name: Install contracts for Post generator
+        run: ./mvnw clean package install --projects external-post-generator-contract
 
-    - name: Install contracts for Comment generator
-      run: ./mvnw clean package install --projects external-comment-generator-contract
+      - name: Install contracts for Comment generator
+        run: ./mvnw clean package install --projects external-comment-generator-contract
 
-    - name: Upload contracts
-      uses: actions/upload-artifact@v2
-      with:
-        name: contracts
-        path: /home/runner/.m2/repository/com/epam/community/z/*-contract/
+      - name: Upload contracts
+        uses: actions/upload-artifact@v2
+        with:
+          name: contracts
+          path: /home/runner/.m2/repository/com/epam/community/z/*-contract/
 
-    - name: Remove installed contracts in order not to cache them
-      run: rm -rf /home/runner/.m2/repository/com/epam
+      - name: Remove installed contracts in order not to cache them
+        run: rm -rf /home/runner/.m2/repository/com/epam
 
   release:
     name: Release artifacts
