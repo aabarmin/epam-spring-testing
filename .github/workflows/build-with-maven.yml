@@ -71,7 +71,7 @@ jobs:
         path: /home/runner
 
     - name: Debug
-      run: ls -R
+      run: ls -aR
 
 #    - name: Build with Maven
 #      run: ./mvnw clean verify
