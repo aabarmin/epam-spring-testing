@@ -58,10 +58,8 @@ jobs:
 
       - name: Configure git
         run: |
-          git config --global commiter.email "robot@github.com"
-          git config --global commiter.name "GitHub Robot"
-          git config --global author.email "${GITHUB_ACTOR}@users.noreply.github.com"
-          git config --global author.name "${GITHUB_ACTOR}"
+          git config --global user.email "robot@github.com"
+          git config --global user.name "GitHub Robot"
 
       - name: Cache local Maven repository
         uses: actions/cache@v2
