@@ -39,7 +39,7 @@ jobs:
         uses: actions/upload-artifact@v2
         with:
           name: contracts
-          path: /home/runner/.m2/repository/com/epam/community/z/*-contract/**/*
+          path: /home/runner/.m2/repository/com/epam/community/z/*-contract/
 
       - name: Remove installed contracts in order not to cache them
         run: rm -rf /home/runner/.m2/repository/com/epam
