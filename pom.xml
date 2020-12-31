@@ -26,6 +26,7 @@
         <module>external-post-generator</module>
         <module>external-comment-generator</module>
         <module>external-post-generator-contract</module>
+        <module>external-comment-generator-contract</module>
     </modules>
 
     <dependencyManagement>
@@ -54,4 +55,17 @@
             <url>https://repo.spring.io/milestone</url>
         </repository>
     </repositories>
+
+    <scm>
+        <developerConnection>scm:git:https://github.com/aabarmin/epam-spring-testing</developerConnection>
+        <tag>HEAD</tag>
+    </scm>
+
+    <distributionManagement>
+        <repository>
+            <id>github</id>
+            <name>GitHub Packages</name>
+            <url>https://maven.pkg.github.com/aabarmin/epam-spring-testing</url>
+        </repository>
+    </distributionManagement>
 </project>
