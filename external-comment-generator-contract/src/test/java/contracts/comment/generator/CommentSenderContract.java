@@ -10,6 +10,9 @@ public class CommentSenderContract implements Supplier<Contract> {
   public Contract get() {
     return Contract.make(c -> {
       c.description("Send a new comment to the channel");
+      c.input(i -> {
+        i.triggeredBy("send()");
+      });
       c.outputMessage(msg -> {
         msg.sentTo("output");
         msg.body(ContractVerifierUtil.map()
