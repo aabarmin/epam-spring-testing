@@ -6,7 +6,7 @@ import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 
 public class LocalDateConverter extends StdConverter<LocalDate, String> {
-  private static final DateTimeFormatter FORMATTER = DateTimeFormatter.ofPattern("y-M-d");
+  private static final DateTimeFormatter FORMATTER = DateTimeFormatter.ofPattern("y-MM-dd");
 
   @Override
   public String convert(LocalDate value) {
