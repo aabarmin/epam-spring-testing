@@ -6,7 +6,7 @@ import org.springframework.cloud.contract.verifier.util.ContractVerifierUtil;
 import java.util.List;
 import java.util.function.Supplier;
 
-public class ShouldProvideAllPostsGet implements Supplier<Contract> {
+public class ShouldProvideAllPosts implements Supplier<Contract> {
   @Override
   public Contract get() {
     return Contract.make(c -> {

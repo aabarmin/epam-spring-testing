@@ -4,16 +4,24 @@ import org.springframework.cloud.contract.spec.Contract;
 import org.springframework.cloud.contract.verifier.util.ContractVerifierUtil;
 
 import java.util.List;
+import java.util.Map;
 import java.util.function.Supplier;
 
-public class ShouldProvideAllPostsPost implements Supplier<Contract> {
+public class ShouldProvidePostRange implements Supplier<Contract> {
   @Override
   public Contract get() {
     return Contract.make(c -> {
       c.description("Posts should be sent back in case of POST request");
       c.request(r -> {
         r.method(r.POST());
-        r.url("/posts/export");
+        r.url("/post-range");
+        r.body(Map.of(
+            "startDate", "2020-01-01",
+            "endDate", "2020-12-12"
+        ));
+        r.headers(h -> {
+          h.contentType(h.applicationJson());
+        });
       });
       c.response(r -> {
         r.status(r.OK());
