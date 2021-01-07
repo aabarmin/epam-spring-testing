@@ -40,7 +40,7 @@ class PostImporterContractStubTest {
 
   @BeforeEach
   public void init() {
-    final String url = stubFinder.findStubUrl("external-post-generator-contract").toString() + "/posts/export";
+    final String url = stubFinder.findStubUrl("external-post-generator-contract").toString() + "/post-range";
     ReflectionTestUtils.setField(importer, "importerAddress", url);
   }
 
@@ -51,7 +51,10 @@ class PostImporterContractStubTest {
 
   @Test
   public void importer_sendsRequest() {
-    final Collection<Post> posts = importer.importPosts(LocalDate.now().minusWeeks(1), LocalDate.now());
+    final Collection<Post> posts = importer.importPosts(
+        LocalDate.of(2020, 01, 01),
+        LocalDate.of(2020, 12, 12)
+    );
 
     assertNotNull(posts);
     assertFalse(posts.isEmpty());

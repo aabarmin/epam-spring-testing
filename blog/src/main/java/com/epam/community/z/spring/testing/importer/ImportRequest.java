@@ -1,9 +1,14 @@
 package com.epam.community.z.spring.testing.importer;
 
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+
 import java.time.LocalDate;
 
 public class ImportRequest {
+  @JsonSerialize(converter = LocalDateToStringConverter.class)
   private LocalDate startDate;
+
+  @JsonSerialize(converter = LocalDateToStringConverter.class)
   private LocalDate endDate;
 
   public ImportRequest(LocalDate startDate, LocalDate endDate) {

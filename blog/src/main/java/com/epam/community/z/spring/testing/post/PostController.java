@@ -22,8 +22,9 @@ public class PostController {
 
   @GetMapping("")
   public List<PostModel> findAll() {
-    return postService.findAll().stream()
-        .sorted(Comparator.comparingInt(post -> post.getComments().size()))
+    return postService.findAll()
+        .stream()
+        .sorted(Comparator.comparing(p -> p.getComments().size(), Comparator.reverseOrder()))
         .map(post -> PostMapper.INSTANCE.toModel(post))
         .collect(Collectors.toList());
   }

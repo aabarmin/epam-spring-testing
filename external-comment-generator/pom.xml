@@ -41,15 +41,17 @@
             <artifactId>spring-cloud-stream-binder-rabbit</artifactId>
         </dependency>
         <dependency>
-            <groupId>org.springframework.amqp</groupId>
-            <artifactId>spring-rabbit-test</artifactId>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-stream</artifactId>
+            <type>test-jar</type>
+            <scope>test</scope>
+            <classifier>test-binder</classifier>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-starter-contract-verifier</artifactId>
             <scope>test</scope>
         </dependency>
-<!--        <dependency>-->
-<!--            <groupId>org.springframework.cloud</groupId>-->
-<!--            <artifactId>spring-cloud-starter-contract-verifier</artifactId>-->
-<!--            <scope>test</scope>-->
-<!--        </dependency>-->
 
         <dependency>
             <groupId>com.google.code.gson</groupId>
@@ -71,17 +73,24 @@
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
             </plugin>
-<!--            <plugin>-->
-<!--                <groupId>org.springframework.cloud</groupId>-->
-<!--                <artifactId>spring-cloud-contract-maven-plugin</artifactId>-->
-<!--                <version>3.0.0</version>-->
-<!--                <extensions>true</extensions>-->
-<!--                <configuration>-->
-<!--                    <contractsDirectory>${project.basedir}/src/contract/resources/contracts</contractsDirectory>-->
-<!--                    <testFramework>JUNIT5</testFramework>-->
-<!--                    <baseClassForTests>com.epam.community.z.spring.test.service.sync.ContractBaseTestClass</baseClassForTests>-->
-<!--                </configuration>-->
-<!--            </plugin>-->
+            <plugin>
+                <groupId>org.springframework.cloud</groupId>
+                <artifactId>spring-cloud-contract-maven-plugin</artifactId>
+                <version>3.0.0</version>
+                <extensions>true</extensions>
+                <configuration>
+                    <contractsDirectory>${project.basedir}/src/test/java/contracts</contractsDirectory>
+                    <testFramework>JUNIT5</testFramework>
+                    <contractsMode>LOCAL</contractsMode>
+                    <contractsPath>/comment</contractsPath>
+                    <baseClassForTests>com.epam.community.z.spring.testing.ContractBaseTestClass</baseClassForTests>
+                    <contractDependency>
+                        <groupId>com.epam.community.z</groupId>
+                        <artifactId>external-comment-generator-contract</artifactId>
+                        <version>${project.version}</version>
+                    </contractDependency>
+                </configuration>
+            </plugin>
         </plugins>
     </build>
 </project>

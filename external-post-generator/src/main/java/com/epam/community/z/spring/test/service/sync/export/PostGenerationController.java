@@ -22,7 +22,7 @@ public class PostGenerationController {
         .get();
   }
 
-  @PostMapping("/posts/export")
+  @PostMapping("/post-range")
   public ExportResponse exportPosts(ExportRequest request) {
     return Optional.of(postGenerationService.findAll(request.getStartDate(), request.getEndDate()))
         .map(ExportResponse::new)

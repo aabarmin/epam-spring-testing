@@ -3,25 +3,18 @@ package com.epam.community.z.spring.testing;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.cloud.stream.annotation.EnableBinding;
-import org.springframework.cloud.stream.messaging.Source;
-import org.springframework.scheduling.annotation.EnableScheduling;
-import org.springframework.scheduling.annotation.Scheduled;
+import org.springframework.context.annotation.Bean;
 
-@EnableScheduling
-@EnableBinding(Source.class)
+import java.util.function.Supplier;
+
 @SpringBootApplication
 public class CommentPublisherApplication {
   @Autowired
   private CommentGenerator commentGenerator;
 
-  @Autowired
-  private CommentSender commentSender;
-
-  @Scheduled(initialDelay = 500, fixedDelay = 1_000)
-  public void generateComment() {
-    final Comment comment = commentGenerator.next();
-    commentSender.send(comment);
+  @Bean
+  public Supplier<Comment> commentSupplier() {
+    return () -> commentGenerator.next();
   }
 
   public static void main(String[] args) {
